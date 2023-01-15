@@ -1,0 +1,75 @@
+
+'simple code to spin the motors
+
+#CHIP 16f887
+
+#define left_positive PortC.7
+#define left_negative PortC.6
+#define right_positive PortC.5
+#define right_negative PortC.4
+
+dir left_positive out
+dir left_negative out
+dir right_positive out
+dir right_negative out
+
+' ---------------------
+' These are the subroutines for movement
+' ---------------------
+sub forward()
+  set left_positive on
+  set left_negative off
+
+  set right_positive on
+  set right_negative off
+end sub
+
+sub backward()
+  set left_positive off
+  set left_negative on
+
+  set right_positive off
+  set right_negative on
+end sub
+
+sub leftTurn()
+  set left_positive off
+  set left_negative on
+
+  set right_positive on
+  set right_negative off
+end sub
+
+sub rightTurn()
+  set left_positive on
+  set left_negative off
+
+  set right_positive off
+  set right_negative on
+end sub
+
+sub idle()
+  set left_positive off
+  set left_negative off
+
+  set right_positive off
+  set right_negative off
+end sub
+
+' ----------------------
+' the main loop
+' ----------------------
+
+do forever
+
+  forward()
+  wait 2000 ms
+  backward()
+  wait 2000 ms
+  leftTurn()
+  wait 2000 ms
+  rightTurn()
+  wait 2000 ms
+
+loop
+end

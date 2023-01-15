@@ -1,0 +1,23 @@
+
+#CHIP 16f887
+
+#define linePort AN7
+#define testLed PortD.1
+
+dir testLed out
+
+
+
+
+Do Forever
+
+  value = ReadAD(linePort)
+
+  if value>0 then
+    set testLed on
+  else
+    set testLed off
+  end if
+
+loop
+end
